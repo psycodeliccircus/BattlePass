@@ -9,7 +9,7 @@ using UnityEngine;
 
 namespace Oxide.Plugins
 {
-    [Info("Battle Pass", "CASHR#6906", "1.0.1")]
+    [Info("Battle Pass", "CASHR#6906", "1.0.2")]
     internal class BattlePass : RustPlugin
     {
         #region Static
@@ -911,6 +911,8 @@ namespace Oxide.Plugins
                             Color = "1 1 1 1", FadeIn = 0.5f * i
                         }
                     }, Layer + ".rewards" + lvl);
+                    
+                    
                     var donateImgae = string.IsNullOrEmpty(check.Reward.ShortName)
                         ? check.Image
                         : check.Reward.ShortName;
@@ -1059,13 +1061,14 @@ namespace Oxide.Plugins
                             Color = "1 1 1 1", FadeIn = 0.5f * i
                         }
                     }, Layer + ".rewards" + lvl);
+                    var image = string.IsNullOrEmpty(check.Reward.ShortName) ? check.Image : check.Reward.ShortName; 
 
                     container.Add(new CuiElement
                     {
                         Parent = Layer + ".rewards" + lvl,
                         Components =
                         {
-                            new CuiRawImageComponent {Png = (String) ImageLibrary.Call("GetImage", check.Image), FadeIn = 0.5f * i},
+                            new CuiRawImageComponent {Png = (String) ImageLibrary.Call("GetImage", image), FadeIn = 0.5f * i},
                             new CuiRectTransformComponent {AnchorMin = "0 1", AnchorMax = "0 1", OffsetMin = "28 -260", OffsetMax = "77 -210"}
                         }
                     });
