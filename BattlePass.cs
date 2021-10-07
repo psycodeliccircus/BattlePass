@@ -26,24 +26,24 @@ namespace Oxide.Plugins
 
         private class Configuration
         {
-            [JsonProperty(PropertyName = "Ссылка на логотип сервера(64x64 px)")]
+            [JsonProperty(PropertyName = "Link do logotipo do servidor (64x64 px)")]
             public string serverLogoURL = "https://i.imgur.com/v0i0Rid.png";
 
-            [JsonProperty(PropertyName = "Название сервера")]
+            [JsonProperty(PropertyName = "Nome do servidor")]
             public string serverName = "The best of the best - Beast";
             
-            [JsonProperty("Настройка очков")] public readonly PointSettings Point = new PointSettings();
+            [JsonProperty("Colocando óculos")] public readonly PointSettings Point = new PointSettings();
 
-            [JsonProperty("Настройки уровней обычных уровней")]
+            [JsonProperty("Configurações de nível de níveis regulares")]
             public readonly LevelSettings LevelDefault = new LevelSettings();
 
-            [JsonProperty("Настройки уровней донатных уровней")]
+            [JsonProperty("Configurações de nível de doação")]
             public readonly LevelSettings LevelDonate = new LevelSettings();
 
             internal class LevelSettings
             {
 
-                [JsonProperty(PropertyName = "Список уровней", ObjectCreationHandling = ObjectCreationHandling.Replace)]
+                [JsonProperty(PropertyName = "Lista de níveis", ObjectCreationHandling = ObjectCreationHandling.Replace)]
                 public readonly List<Settings> LevelList = new List<Settings>
                 {
                     new Settings
@@ -266,15 +266,15 @@ namespace Oxide.Plugins
 
                 internal class Settings
                 {
-                    [JsonProperty("Номер уровня")] public int Level;
+                    [JsonProperty("Número do nível")] public int Level;
 
-                    [JsonProperty("Количество Exp для получения этого уровня")]
+                    [JsonProperty("Exp para chegar a este nível")]
                     public int Exp;
 
-                    [JsonProperty("Картинка отображения награды")]
+                    [JsonProperty("Imagem de exibição do prêmio")]
                     public string Image;
 
-                    [JsonProperty("Награда за уровень")] public RewardSettings Reward;
+                    [JsonProperty("Recompensa de nível")] public RewardSettings Reward;
 
                     internal class RewardSettings
                     {
@@ -282,7 +282,7 @@ namespace Oxide.Plugins
                         [JsonProperty("Amount")] public int Amount;
                         [JsonProperty("SkinID")] public ulong SkinID;
 
-                        [JsonProperty("Команды, которые должны выполниться")]
+                        [JsonProperty("Comandos a serem executados")]
                         public List<string> command;
                     }
                 }
@@ -290,33 +290,33 @@ namespace Oxide.Plugins
 
             internal class PointSettings
             {
-                [JsonProperty("Множитель очков у донатера")]
+                [JsonProperty("Multiplicador de pontos doador")]
                 public readonly int DonateAmount = 1;
 
-                [JsonProperty("Количество очков за убийство игрока")]
+                [JsonProperty("O número de pontos por matar um jogador")]
                 public readonly int killPlayer = 1;
 
-                [JsonProperty("Количество очков за убийство животных")]
+                [JsonProperty("Número de pontos por matar animais")]
                 public readonly int killHuman = 1;
 
-                [JsonProperty("Количество очков за убийство вертолета")]
+                [JsonProperty("Número de pontos por matar um helicóptero")]
                 public readonly int killHeli = 1;
 
-                [JsonProperty("Количество очков за убийство НПС")]
+                [JsonProperty("Pontos por matar NPCs")]
                 public readonly int killNPC = 1;
 
-                [JsonProperty("Количество очков за убийство танка")]
+                [JsonProperty("O número de pontos por matar um tanque")]
                 public readonly int killBredly = 1;
 
-                [JsonProperty("Количество отнимаемых очков за смерть")]
+                [JsonProperty("O número de pontos deduzidos por morte")]
                 public readonly int deathPlayer = 1;
 
-                [JsonProperty("Настройки добычи")] public readonly GatherSettings Gather = new GatherSettings();
+                [JsonProperty("Configurações de mineração")] public readonly GatherSettings Gather = new GatherSettings();
             }
 
             internal class GatherSettings
             {
-                [JsonProperty(PropertyName = "Настройка добычи(shortname/количество очков", ObjectCreationHandling = ObjectCreationHandling.Replace)]
+                [JsonProperty(PropertyName = "Configuração de loot (nome curto / número de pontos", ObjectCreationHandling = ObjectCreationHandling.Replace)]
                 public readonly Dictionary<string, int> GatherList = new Dictionary<string, int>
                 {
                     ["wood"] = 2
@@ -335,7 +335,7 @@ namespace Oxide.Plugins
             }
             catch
             {
-                PrintError("Your configuration file contains an error. Using default configuration values.");
+                PrintError("Seu arquivo de configuração contém um erro. Usando valores de configuração padrão.");
                 LoadDefaultConfig();
             }
         }
@@ -363,10 +363,10 @@ namespace Oxide.Plugins
                              "\n=====================VK: vk.com/cashrdev" +
                              "\n=====================Discord: CASHR#6906" +
                              "\n=====================Email: pipnik99@gmail.com" +
-                             "\n=====================Если вы хотите заказать у меня плагин, я жду вас в любой момент." +
+                             "\n=====================Se você deseja solicitar um plug-in de mim, estou esperando por você a qualquer momento." +
                              "\n=====================");
                 PrintWarning(
-                    "Благодарим за покупку плагина на сайте RustPlugin.ru. Если вы передадите этот плагин сторонним лицам знайте - это лишает вас гарантированных обновлений!");
+                    "Obrigado por adquirir o plugin no site RustPlugin.ru. Se você transferir este plugin para terceiros, você deve saber - ele o priva de atualizações garantidas!");
             }
             else
             {
@@ -591,7 +591,7 @@ namespace Oxide.Plugins
             if (arg == null || arg.Args?.Length != 2)
             {
                 PrintError(
-                    "Вы не правильно используете команду. Пример: givepoint STEAMID количество");
+                    "Você não está usando o comando corretamente. Exemplo: givepoint STEAMID quantidade");
                 return;
             }
 
@@ -611,7 +611,7 @@ namespace Oxide.Plugins
             var player = arg?.Player();
             if (arg == null || arg.Args.Length == 0)
             {
-                player.ChatMessage("Не верное число");
+                player.ChatMessage("Número incorreto");
                 return;
             }
 
@@ -722,7 +722,7 @@ namespace Oxide.Plugins
                     RectTransform = {AnchorMin = "0 1", AnchorMax = "0 1", OffsetMin = "308 -172", OffsetMax = "500 -150"},
                     Text =
                     {
-                        Text = $"ОЧКИ ОПЫТА <color=white>{d.Score}/{settings.Exp}</color>", Font = "robotocondensed-bold.ttf", FontSize = 15, Align = TextAnchor.MiddleLeft,
+                        Text = $"PONTOS DE EXPERIÊNCIA <color=white>{d.Score}/{settings.Exp}</color>", Font = "robotocondensed-bold.ttf", FontSize = 15, Align = TextAnchor.MiddleLeft,
                         Color = "0.93 0.77 0.58 1.00"
                     }
                 }, Layer);
@@ -740,7 +740,7 @@ namespace Oxide.Plugins
                     RectTransform = {AnchorMin = "0 1", AnchorMax = "0 1", OffsetMin = "308 -172", OffsetMax = "500 -150"},
                     Text =
                     {
-                        Text = "ОЧКИ ОПЫТА <color=white>МАКСИМУМ</color>", Font = "robotocondensed-bold.ttf", FontSize = 15, Align = TextAnchor.MiddleLeft,
+                        Text = "PONTOS DE EXPERIÊNCIA <color=white>МАКСИМУМ</color>", Font = "robotocondensed-bold.ttf", FontSize = 15, Align = TextAnchor.MiddleLeft,
                         Color = "0.93 0.77 0.58 1.00"
                     }
                 }, Layer);
@@ -802,7 +802,7 @@ namespace Oxide.Plugins
                         RectTransform = {AnchorMin = "0 1", AnchorMax = "0 1", OffsetMin = "0 -36", OffsetMax = "95 0"},
                         Text =
                         {
-                            Text = $"Ур. {lvl}", Font = "robotocondensed-bold.ttf", FontSize = 20, Align = TextAnchor.MiddleCenter,
+                            Text = $"Lvl. {lvl}", Font = "robotocondensed-bold.ttf", FontSize = 20, Align = TextAnchor.MiddleCenter,
                             Color = "0.84 0.85 0.80 1.00", FadeIn = 0.5f * i
                         }
                     }, Layer + ".rewards" + lvl);
